@@ -1,6 +1,7 @@
 ﻿@page
 @model pizzaria.Pages.PizzaModel
 @{
+    
 }
 
 <div class="text-center">
@@ -8,7 +9,7 @@
         <h1 class="display-4 text-capitalize text-black">
             Our great selction of pizzas</h1>
         <h4>Chose one, or try our Pizza builder! then order and Dine!</h4>
-        <h4>No need to give any´of your details</h4>
+        <h4>No need to give any of your details</h4>
         <h4>We already know everything</h4>
         <p class="smallText"><i>Only one pizza per order.</i></p>
     </div>
@@ -28,6 +29,18 @@
                     </div>
                 </div>
             </div>
+            @foreach(var pizza in Model.FakePizzaDb)
+            {
+                string imagePath = "~/images/Pizzas/"+ pizza.ImageTitle + ".png";
+
+                <div class="col-4 mb-5">
+                    
+                    <a class="pizzaImg" asp-area="" asp-page="/Checkout/Checkout" asp-route-PizzaName="@pizza.PizzaName"
+                   asp-route-PizzaPrice="@pizza.FinalPrice" asp-route-ImageTitle="@pizza.ImageTitle"><img src="@imagePath" class="w-100" asp-append-version="true" /></a>
+                    <br />
+                </div>
+            }
+            
         </div>
     </div>
 </div>
